@@ -30,6 +30,7 @@ _PROVIDER_MAP = {
     "cuda": ["CUDAExecutionProvider", "CPUExecutionProvider"],
     "coreml": ["CoreMLExecutionProvider", "CPUExecutionProvider"],
     "dml": ["DmlExecutionProvider", "CPUExecutionProvider"],
+    "lmstudio": ["LMStudioProvider"],
 }
 
 _DEVICE_EXTRA = {
@@ -55,6 +56,9 @@ def _resolve_providers(device: str) -> tuple[list, str]:
     accelerator is not compiled into the installed ``onnxruntime``.
     """
     device = (device or "auto").strip().lower()
+
+    if device == "lmstudio":
+        return (["LMStudioProvider"], "lmstudio")
 
     try:
         import onnxruntime as ort
@@ -133,6 +137,24 @@ def get_embedding_function(device: Optional[str] = None):
     cached = _EF_CACHE.get(cache_key)
     if cached is not None:
         return cached
+
+    if effective == "lmstudio":
+        from chromadb.utils.embedding_functions import OpenAIEmbeddingFunction
+        import os
+
+        class _LMStudioONNX(OpenAIEmbeddingFunction):
+            @staticmethod
+            def name() -> str:
+                return "default"
+
+        ef = _LMStudioONNX(
+            api_key=os.environ.get("LM_API_TOKEN", "lmstudio"),
+            api_base=os.environ.get("LM_API_BASE", "http://127.0.0.1:1234/v1"),
+            model_name="text-embedding-nomic-embed-text-v1.5",
+        )
+        _EF_CACHE[cache_key] = ef
+        logger.info("Embedding function initialized (device=lmstudio)")
+        return ef
 
     ef_cls = _build_ef_class()
     ef = ef_cls(preferred_providers=providers)

@@ -29,6 +29,7 @@ from .base import (
     UnsupportedFilterError,
 )
 from .chroma import ChromaBackend, ChromaCollection
+from .qdrant import QdrantBackend, QdrantCollection
 from .registry import (
     available_backends,
     get_backend,
@@ -46,6 +47,8 @@ __all__ = [
     "BaseCollection",
     "ChromaBackend",
     "ChromaCollection",
+    "QdrantBackend",
+    "QdrantCollection",
     "DimensionMismatchError",
     "EmbedderIdentityMismatchError",
     "GetResult",

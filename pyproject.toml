@@ -28,7 +28,9 @@ classifiers = [
 ]
 dependencies = [
     "chromadb>=1.5.4,<2",
+    "openai>=2.36.0",
     "pyyaml>=6.0,<7",
+    "qdrant-client>=1.16.1",
     "tomli>=2.0.0; python_version < '3.11'",
 ]
 

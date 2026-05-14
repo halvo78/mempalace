@@ -178,12 +178,15 @@ def resolve_backend_for_palace(
 
 
 def _register_builtins() -> None:
-    """Register chroma as the in-tree default."""
+    """Register chroma and qdrant as the in-tree defaults."""
     from .chroma import ChromaBackend
+    from .qdrant import QdrantBackend
 
     # Use setdefault semantics so a caller that pre-registered for tests wins.
     if "chroma" not in _registry:
         _registry["chroma"] = ChromaBackend
+    if "qdrant" not in _registry:
+        _registry["qdrant"] = QdrantBackend
 
 
 _register_builtins()
