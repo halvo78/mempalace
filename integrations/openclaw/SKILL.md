@@ -106,6 +106,7 @@ You have access to a local memory palace via MCP tools. The palace stores verbat
 - **LM Studio Embeddings**: Zero-cloud vectorization using local `nomic-embed-text-v1.5`.
 - **NLM Brain Mining**: Automatically captures browser-based selector fixes and knowledge graphs.
 - **iMessage Integration**: Mines `chat.db` to understand user intent and relationships.
+- **Paperclip Company Memory**: Captures agent thinking logs, instructions, and outcomes from your `paperclip` orchestration layer.
 
 ## Setup
 
@@ -117,6 +118,8 @@ uv tool install mempalace
 mempalace mine ~/work/nlm-brain --source nlm-brain
 # Mine iMessage
 mempalace mine / --source imessage
+# Mine Paperclip
+mempalace mine ~/.paperclip --source paperclip
 ```
 
 ### OpenClaw MCP config

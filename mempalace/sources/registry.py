@@ -166,11 +166,14 @@ def _register_builtins() -> None:
     """Register built-in source adapters."""
     from .nlm_brain import NlmBrainSourceAdapter
     from .imessage import IMessageSourceAdapter
+    from .paperclip import PaperclipSourceAdapter
 
     if "nlm-brain" not in _registry:
         _registry["nlm-brain"] = NlmBrainSourceAdapter
     if "imessage" not in _registry:
         _registry["imessage"] = IMessageSourceAdapter
+    if "paperclip" not in _registry:
+        _registry["paperclip"] = PaperclipSourceAdapter
 
 
 _register_builtins()
