@@ -160,3 +160,17 @@ def resolve_adapter_for_source(
         if candidate:
             return candidate
     return default
+
+
+def _register_builtins() -> None:
+    """Register built-in source adapters."""
+    from .nlm_brain import NlmBrainSourceAdapter
+    from .imessage import IMessageSourceAdapter
+
+    if "nlm-brain" not in _registry:
+        _registry["nlm-brain"] = NlmBrainSourceAdapter
+    if "imessage" not in _registry:
+        _registry["imessage"] = IMessageSourceAdapter
+
+
+_register_builtins()

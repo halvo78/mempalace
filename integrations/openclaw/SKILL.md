@@ -100,14 +100,23 @@ You have access to a local memory palace via MCP tools. The palace stores verbat
   - `agent_name` (required)
   - `last_n`: number of entries (default 10)
 
+## Empire-Grade Capabilities (NEW May 2026)
+
+- **Native Qdrant Support**: Connects to `:6333` on Mac Studio for 100% data parity.
+- **LM Studio Embeddings**: Zero-cloud vectorization using local `nomic-embed-text-v1.5`.
+- **NLM Brain Mining**: Automatically captures browser-based selector fixes and knowledge graphs.
+- **iMessage Integration**: Mines `chat.db` to understand user intent and relationships.
+
 ## Setup
 
 Install MemPalace and populate the palace (uv recommended):
 
 ```bash
-uv tool install mempalace   # or: pip install mempalace
-mempalace init ~/my-convos
-mempalace mine ~/my-convos
+uv tool install mempalace
+# Mine NLM Brain
+mempalace mine ~/work/nlm-brain --source nlm-brain
+# Mine iMessage
+mempalace mine / --source imessage
 ```
 
 ### OpenClaw MCP config

@@ -51,6 +51,8 @@ chroma = "mempalace.backends.chroma:ChromaBackend"
 # onto ``BaseSourceAdapter`` in a follow-up PR. Third-party adapter packages
 # (``mempalace-source-cursor``, ``mempalace-source-git``, …) register here.
 [project.entry-points."mempalace.sources"]
+nlm-brain = "mempalace.sources.nlm_brain:NlmBrainSourceAdapter"
+imessage = "mempalace.sources.imessage:IMessageSourceAdapter"
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0", "pytest-cov>=4.0", "ruff>=0.4.0", "psutil>=5.9"]
